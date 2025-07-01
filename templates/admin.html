@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel - Haryana Lottery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 40px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+      color: red;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    .success {
+      color: green;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .file-status {
+      margin: 10px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+    .file-status a {
+      color: red;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Admin Panel</h2>
+
+    {% if success %}
+      <div class="success">{{ success }}</div>
+    {% endif %}
+
+    {% if morning_exists %}
+      <div class="file-status">
+        ✅ Morning Result already uploaded: <a href="/results/morning_pdf.pdf" target="_blank">View</a>
+      </div>
+    {% endif %}
+    {% if night_exists %}
+      <div class="file-status">
+        ✅ Night Result already uploaded: <a href="/results/night_pdf.pdf" target="_blank">View</a>
+      </div>
+    {% endif %}
+
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+      <label>Upload Morning PDF:</label>
+      <input type="file" name="morning_pdf" accept="application/pdf" required>
+
+      <label>Upload Night PDF:</label>
+      <input type="file" name="night_pdf" accept="application/pdf" required>
+
+      <button type="submit">Upload</button>
+    </form>
+  </div>
+</body>
+</html>

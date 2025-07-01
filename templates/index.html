@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Haryana State Lottery - Official Results</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #ffe8e8, #f2f2f2);
+      color: #222;
+    }
+
+    .top-bar {
+      background-color: #c40000;
+      color: white;
+      text-align: center;
+      padding: 25px 10px 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .top-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .top-content img {
+      height: 100px;
+      max-width: 100px;
+      object-fit: contain;
+    }
+
+    .top-text {
+      text-align: center;
+    }
+
+    .top-text h1 {
+      font-size: 28px;
+      margin: 0;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .singham-box {
+      display: inline-block;
+      background-color: white;
+      color: red;
+      font-size: 24px;
+      font-weight: 800;
+      padding: 5px 20px;
+      border-radius: 5px;
+      margin: 10px 0;
+      letter-spacing: 2px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      text-transform: uppercase;
+    }
+
+    .top-text h2 {
+      margin: 8px 0 5px;
+      font-size: 20px;
+      color: #ffd700;
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+
+    .hero h1 {
+      font-size: 30px;
+      color: #c40000;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: #444;
+    }
+
+    .main-section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .result-box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+
+    .result-box:hover {
+      transform: translateY(-3px);
+    }
+
+    .result-box h3 {
+      margin: 0 0 10px;
+      color: #c40000;
+      font-size: 20px;
+    }
+
+    .result-box p {
+      margin: 5px 0;
+      font-size: 15px;
+    }
+
+    .result-box .status {
+      font-weight: bold;
+      margin-top: 10px;
+      color: green;
+    }
+
+    .result-box .status.unavailable {
+      color: red;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 15px;
+      background-color: #c40000;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .download-btn:hover {
+      background-color: #a10000;
+    }
+
+    .pdf-preview {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 794px;
+      height: 1123px;
+      border: none;
+    }
+
+    .footer {
+      background-color: #222;
+      color: #ffd700;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+
+    .footer a {
+      color: #ffd700;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .top-text h1 {
+        font-size: 22px;
+      }
+      .singham-box {
+        font-size: 18px;
+        padding: 4px 14px;
+      }
+      .top-text h2 {
+        font-size: 16px;
+      }
+      .hero h1 {
+        font-size: 24px;
+      }
+      .result-box {
+        padding: 20px;
+      }
+      .download-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+      iframe {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="top-content">
+      <img src="/Users/sourav_sharma/Desktop/LOT/templates/LotLogo.png" alt="Lottery Logo">
+      <div class="top-text">
+        <h1>MEGHALAYA STATE LOTTERIES</h1>
+        <div class="singham-box">SINGHAM</div>
+        <h2>Shillong Weekly Lottery</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>Download Latest Results</h1>
+    <p>Updated Automatically • Date: {{ today }}</p>
+  </div>
+
+  <div class="main-section">
+    <div class="result-box">
+      <h3>Morning Result</h3>
+      <p><strong>Time:</strong> 2:00 PM</p>
+      {% if morning_exists %}
+        <div class="status">✅ Available</div>
+        <a class="download-btn" href="/results/morning_pdf.pdf" target="_blank">Download PDF</a>
+        <div class="pdf-preview">
+          <iframe src="/results/morning_pdf.pdf"></iframe>
+        </div>
+      {% else %}
+        <div class="status unavailable">❌ Not Uploaded Yet</div>
+      {% endif %}
+    </div>
+
+    <div class="result-box">
+      <h3>Night Result</h3>
+      <p><strong>Time:</strong> 9:00 PM</p>
+      {% if night_exists %}
+        <div class="status">✅ Available</div>
+        <a class="download-btn" href="/results/night_pdf.pdf" target="_blank">Download PDF</a>
+        <div class="pdf-preview">
+          <iframe src="/results/night_pdf.pdf"></iframe>
+        </div>
+      {% else %}
+        <div class="status unavailable">❌ Not Uploaded Yet</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2025 Haryana State Lottery. All Rights Reserved.</p>
+    <p>
+      
+      
+    </p>
+  </div>
+
+</body>
+</html>
